@@ -1,0 +1,9 @@
+abc
+6
+1
+invalid
+rock
+paper
+scissors
+n
+5

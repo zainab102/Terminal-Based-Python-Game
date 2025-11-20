@@ -80,6 +80,7 @@ def rock_paper_scissors():
 
 # Word Guessing (Hangman Lite)
 def word_guessing():
+    random.seed(42)  # For consistent testing
     words = ['python', 'hangman', 'computer', 'programming', 'algorithm']
     word = random.choice(words)
     guessed_letters = set()
@@ -126,34 +127,54 @@ def word_guessing():
 # Simple Adventure Story
 def adventure_story():
     score = 0
+    stories = [
+        {
+            "intro": "You are a brave adventurer on a quest to find the lost city.",
+            "level1": "Level 1: You encounter a fork in the road.",
+            "level1_options": ["left", "right"],
+            "level1_outcomes": ["You find a hidden map! +20 points", "You get lost in the forest! -10 points"],
+            "level1_scores": [20, -10],
+            "level2": "Level 2: A mysterious creature appears.",
+            "level2_options": ["fight", "run"],
+            "level2_outcomes": ["You befriend the creature! +30 points", "You find a shortcut. +10 points"],
+            "level2_scores": [30, 10]
+        },
+        {
+            "intro": "You are an explorer searching for ancient ruins.",
+            "level1": "Level 1: You see a cave entrance.",
+            "level1_options": ["enter", "climb"],
+            "level1_outcomes": ["You discover artifacts! +25 points", "You reach a viewpoint! +15 points"],
+            "level1_scores": [25, 15],
+            "level2": "Level 2: A storm approaches.",
+            "level2_options": ["shelter", "continue"],
+            "level2_outcomes": ["You wait out the storm safely! +20 points", "You push through and find ruins! +35 points"],
+            "level2_scores": [20, 35]
+        }
+    ]
+    story = random.choice(stories)
+    
     print("Welcome to the Simple Adventure Story!")
-    print("You are a brave adventurer on a quest.")
+    print(story["intro"])
     
     # Level 1
-    print("\nLevel 1: You encounter a fork in the road.")
-    choice = input("Do you go left or right? ").lower()
-    while choice not in ['left', 'right']:
-        choice = input("Invalid choice. Left or right? ").lower()
+    print(f"\n{story['level1']}")
+    choice = input(f"Do you {story['level1_options'][0]} or {story['level1_options'][1]}? ").lower()
+    while choice not in story['level1_options']:
+        choice = input(f"Invalid choice. {story['level1_options'][0]} or {story['level1_options'][1]}? ").lower()
     
-    if choice == 'left':
-        print("You find a treasure chest! +20 points")
-        score += 20
-    else:
-        print("You fall into a trap! -10 points")
-        score -= 10
+    index = story['level1_options'].index(choice)
+    print(story['level1_outcomes'][index])
+    score += story['level1_scores'][index]
     
     # Level 2
-    print("\nLevel 2: A dragon blocks your path.")
-    choice = input("Do you fight or run? ").lower()
-    while choice not in ['fight', 'run']:
-        choice = input("Invalid choice. Fight or run? ").lower()
+    print(f"\n{story['level2']}")
+    choice = input(f"Do you {story['level2_options'][0]} or {story['level2_options'][1]}? ").lower()
+    while choice not in story['level2_options']:
+        choice = input(f"Invalid choice. {story['level2_options'][0]} or {story['level2_options'][1]}? ").lower()
     
-    if choice == 'fight':
-        print("You defeat the dragon! +30 points")
-        score += 30
-    else:
-        print("You escape safely. +10 points")
-        score += 10
+    index = story['level2_options'].index(choice)
+    print(story['level2_outcomes'][index])
+    score += story['level2_scores'][index]
     
     print(f"\nAdventure complete! Your final score: {score}")
     if score > 30:

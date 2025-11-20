@@ -1,0 +1,6 @@
+1
+rock
+paper
+scissors
+n
+5
