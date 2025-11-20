@@ -80,8 +80,7 @@ def rock_paper_scissors():
 
 # Word Guessing (Hangman Lite)
 def word_guessing():
-    random.seed(42)  # For consistent testing
-    words = ['python', 'hangman', 'computer', 'programming', 'algorithm']
+    words = ['python', 'hangman', 'computer', 'programming', 'algorithm', 'elephant', 'butterfly', 'mountain', 'ocean', 'galaxy', 'sunflower', 'telescope', 'keyboard', 'adventure', 'mystery', 'puzzle', 'journey', 'discovery', 'challenge', 'victory']
     word = random.choice(words)
     guessed_letters = set()
     attempts = 6
